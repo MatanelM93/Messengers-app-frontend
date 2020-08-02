@@ -1,0 +1,81 @@
+/* TODO: merge this with login scss*/
+
+
+$form-width: 800px;
+$form-height: 500px;
+$form-margins: 10px;
+$form-padding: 20px;
+
+
+mat-card{
+    position: relative;
+    left: 50%;
+    // top: 50%;
+    transform: translateX(-50%);
+    width: $form-width;
+    min-height: $form-height;
+    margin: 20px;
+    &-title{
+        text-align: center;
+    }
+    &-subtitle{
+        margin-top: 13px !important;
+        margin-bottom: 0 !important;
+    }
+    .messenger-info{
+        position: relative;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+form > .container{
+    height: 300px;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-gap: 15px;
+    margin: 40px 0 0 0;
+    background-color: #fff;
+    grid-template-areas: "first-name first-name last-name last-name . . ."
+                         "address address address address address address address"
+                         "primary-phone primary-phone secondary-phone secondary-phone message message message"
+                         "email email password password password-match password-match sign-up";
+    .required::after{
+        content: '*';
+        position: absolute;
+        color: red;
+    }
+    .first-name{ grid-area: first-name;}
+    .last-name{ grid-area: last-name;}
+    .address { 
+        grid-area: address;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        grid-template-areas: "city street number entrance floor apartment zip-code";
+        grid-gap: 15px;
+    }
+    .city{ grid-area: city;}
+    .street{ grid-area: street;}
+    .number{ grid-area: number;}
+    .entrance{ grid-area: entrance;}
+    .zip-code{ grid-area: zip-code;}
+    .floor{ grid-area: floor;}
+    .apartment{ grid-area: apartment;}
+    .primary-phone{ grid-area: primary-phone;}
+    .secondary-phone{ grid-area: secondary-phone;}
+    .message{ grid-area: message;}
+    .email{ grid-area: email;}
+    .password{ grid-area: password;}
+    .password-match{ grid-area: password-match;}
+    .sign-up{ grid-area: sign-up}
+    mat-form-field{
+        min-width: 100px;
+        max-width: 100%;
+    }
+    button{
+        justify-self: center;
+        align-self: center;
+    }
+}

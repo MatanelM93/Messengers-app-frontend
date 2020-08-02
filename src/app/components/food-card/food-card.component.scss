@@ -1,0 +1,14 @@
+mat-card{
+    font-weight: 600 ;
+    &-title{
+        font-size: 22px;
+    }
+    &-actions{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        span{
+            font-size: 18px;
+        }
+    }
+}

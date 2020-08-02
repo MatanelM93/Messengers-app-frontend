@@ -1,0 +1,12 @@
+$nav-background: white;
+
+nav{
+    background: $nav-background;
+    height: 36px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-methods, .user-methods div{
+    display: flex;
+}

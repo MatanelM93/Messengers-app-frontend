@@ -1,0 +1,95 @@
+<mat-card>
+    <mat-card-title>Register form</mat-card-title>
+
+    <form [formGroup]="form" (ngSubmit)="register()">
+        <div class="container">
+            <mat-form-field appearance="fill" class="first-name">
+                <mat-label class="required">First name</mat-label>
+                <input matInput placeholder="Israel" formControlName="first_name">
+                <mat-error *ngIf="firstName().invalid">{{getDefaultRequiredMessage()}}</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="last-name">
+                <mat-label class="required">Last name</mat-label>
+                <input matInput placeholder="Israeli" formControlName="last_name">
+                <mat-error *ngIf="lastName().invalid">{{getDefaultRequiredMessage()}}</mat-error>
+            </mat-form-field>
+            <div class="address" formGroupName="address">
+                <mat-form-field appearance="fill" class="city">
+                    <mat-label class="required">City</mat-label>
+                    <input matInput placeholder="Herzeli'a" formControlName="city">
+                    <mat-error *ngIf="city().invalid">{{getDefaultRequiredMessage()}}</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="street">
+                    <mat-label class="required">Street</mat-label>
+                    <input matInput placeholder="Dizengoff" formControlName="street">
+                    <mat-error *ngIf="street().invalid">{{getDefaultRequiredMessage()}}</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="number">
+                    <mat-label class="required">Number</mat-label>
+                    <input matInput placeholder="10" formControlName="number" type="number">
+                    <mat-error *ngIf="email().invalid">{{getDefaultRequiredMessage()}}</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="entrance">
+                    <mat-label>Entrance</mat-label>
+                    <input matInput placeholder="a" formControlName="entrance" maxlength="2">
+                    <mat-error *ngIf="entrance().invalid">{{getDefaultRequiredMessage()}}</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="floor">
+                    <mat-label>Floor</mat-label>
+                    <input matInput placeholder="2" formControlName="floor" type="number" min="-1" max="100">
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="apartment">
+                    <mat-label>Apt.</mat-label>
+                    <input matInput placeholder="4" formControlName="apartment" type="number" min="0" max="1000">
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="zip-code">
+                    <mat-label class="required">Postal code</mat-label>
+                    <input matInput placeholder="1234567" formControlName="postal" maxlength="7">
+                    <mat-error *ngIf="zipCode().invalid">{{getDefaultRequiredMessage()}}</mat-error>
+                </mat-form-field>
+            </div>
+            <mat-form-field appearance="fill" class="primary-phone">
+                <mat-label class="required">Phone number 1</mat-label>
+                <input matInput placeholder="0501234567" formControlName="phone_1">
+                <mat-error *ngIf="primaryPhone().invalid">{{getEmailErrorMessage()}}</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="secondary-phone">
+                <mat-label>Phone number 2</mat-label>
+                <input matInput placeholder="03-123456789" formControlName="phone_2">
+                <mat-hint @fromTop *ngIf="secondaryPhone().touched" align="start">Providing a relative's phone number prevents miscarriages</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="message">
+                <mat-label>Message</mat-label>
+                <input matInput placeholder="Put in front of the door, thanks." formControlName="message">
+                <mat-hint @fromTop *ngIf="message().touched" align="start">Leaving a message helps to identify your order</mat-hint>
+                <mat-hint align="end">{{message().value.length}} / 256</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="email">
+                <mat-label class="required">Email</mat-label>
+                <input matInput placeholder="israel@israeli.co.il" formControlName="email">
+                <mat-error *ngIf="email().invalid">{{getEmailErrorMessage()}}</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="password">
+                <mat-label class="required">Password</mat-label>
+                <input matInput formControlName="password" matInput>
+                <mat-error *ngIf="password().invalid">{{getPasswordErrorMessage()}}</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="password-match">
+                <mat-label class="required">Match Password</mat-label>
+                <input matInput formControlName="match_password" matInput>
+                <mat-error *ngIf="match_password().invalid">{{getMatchPasswordErrorMessage()}}</mat-error>
+            </mat-form-field>
+            <button type="submit" mat-raised-button class="sign-up" [disabled]="form.invalid">Sign up</button>
+        </div>
+        <mat-card-subtitle>
+            <mat-error>{{form_error}}</mat-error>
+        </mat-card-subtitle>
+    </form>
+    <mat-card-actions>
+        <button mat-button [routerLink]="['/messenger-login']">Messengers login</button>
+        <button mat-button [routerLink]="['/login']">Customers login</button>
+    </mat-card-actions>
+    <mat-card-subtitle class="messenger-info">
+        Are you a messenger? send us a request to sign up - info@example.com
+    </mat-card-subtitle>
+</mat-card>

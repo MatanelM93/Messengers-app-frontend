@@ -1,0 +1,11 @@
+<mat-card>
+    <div *ngFor="let i of orders">
+        <h5>{{ i.status }}</h5>
+        <ul>
+            <li *ngFor="let j of i.items">
+                {{ j.name }} : {{ j.quantity }}
+            </li>
+        </ul>
+        <button mat-raised-button (click)="pick(i.id)">Pick</button>
+    </div>
+</mat-card>

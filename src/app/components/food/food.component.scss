@@ -1,0 +1,27 @@
+$primary-color1-light: #2fa1ec;
+$primary-color1-dark: #01426e;
+.sidebar{
+    grid-area: sidebar;
+}
+.items{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 20px;
+    grid-area: container;
+}
+.categories{
+    display: flex;
+    .category{
+        flex-grow: 1;
+        text-align: center;
+        padding: 5px;
+        background: $primary-color1-light;
+        cursor: pointer;
+        &:hover{
+            background: $primary-color1-dark;
+            color: white;
+        }
+    }
+}
+
+

@@ -1,0 +1,43 @@
+mat-card{
+    height: 100vh;
+    margin: 20px;
+    &.history{
+        position: fixed;
+        top: 46px;
+        width: calc(100% - 80px);
+        button{
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+    }
+}
+
+.not-checked{
+    mat-form-field{
+        width: 250px;
+        margin-bottom: 20px;
+    }
+    button{
+        margin-bottom: 20px;
+    }
+}
+
+.checkout{
+    columns: 300px 2;
+    padding: 20px;
+    width: 800px;
+    height: auto;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    mat-card-content{
+        height: 300px;
+    }
+    & > button{
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+}

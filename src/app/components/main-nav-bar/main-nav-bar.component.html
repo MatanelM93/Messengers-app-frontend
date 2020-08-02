@@ -1,0 +1,23 @@
+<nav >
+    <div class="common-method">
+        <button mat-button [routerLink]="['/home']">Home</button>
+        <button mat-button [routerLink]="['/items']">Items</button>
+    </div>
+    <div class="user-methods">
+        <div *ngIf="!( auth.userSubject$ | async )">
+            <button mat-button [routerLink]="['/login']">Login</button>
+            <button mat-button [routerLink]="['/register']">Register</button>
+        </div>
+        <div *ngIf="!!( auth.userSubject$ | async )">
+            <div *ngIf="(auth.userType$ | async) == 'customer'">
+                <button mat-button [routerLink]="['/order']">My Order</button>
+            </div>
+            <div *ngIf="(auth.userType$ | async) == 'messenger'">
+                <button mat-button [routerLink]="['/orders']">Orders</button>
+                <button mat-button [routerLink]="['/deliveries']">My deliveries</button>
+            </div>
+            <button mat-button (click)="logout()">Log out</button>
+        </div>
+    </div>
+
+</nav>

@@ -1,0 +1,39 @@
+<mat-card>
+    <h3>Orders:</h3>
+
+    <mat-card-subtitle>Picked orders</mat-card-subtitle>
+
+    <div *ngIf="picked.length > 0">
+        <ul *ngFor="let i of picked">
+            <li *ngFor="let j of i.items">
+                {{ j.name }} : {{ j.quantity }}
+            </li>
+            <button mat-raised-button (click)="update(i.id)">Stumbled</button>
+        </ul>
+    </div>
+
+    <div *ngIf="stumbled.length > 0">
+        <mat-card-subtitle>Stumbled orders</mat-card-subtitle>
+
+        <ul *ngFor="let i of stumbled">
+            <li *ngFor="let j of i.items">
+                {{ j.name }} : {{ j.quantity }}
+            </li>
+        </ul>
+    </div>
+    <mat-card-subtitle>Delivered orders</mat-card-subtitle>
+    <div *ngIf="delivered.length > 0" >
+        <ul *ngFor="let i of delivered">
+            <button mat-raised-button (click)="toggle(i.id)">Order No.{{ i.id }}</button>
+        </ul>
+    </div>
+</mat-card>
+<mat-card class="delivered" *ngIf="toggleDelivered">
+    <button mat-raised-button (click)="toggleDelivered = !toggleDelivered">X</button>
+    <ul>
+        <li *ngFor="let i of currentDelivered.items">
+            {{ i.name }}: {{ i.quantity}}
+        </li>
+    </ul>
+</mat-card>
+

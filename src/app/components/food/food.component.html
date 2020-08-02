@@ -1,0 +1,18 @@
+
+<mat-card class="sidebar">
+    <mat-card-title>Total: {{ price }}</mat-card-title>
+    <ul>
+        <li *ngFor="let i of orderItems">
+            {{ i.name }}: {{ i.quantity }} <button mat-button (click)="removeFromOrder(i.id)">remove</button>
+        </li>
+    </ul>
+</mat-card>
+<mat-card class="container">
+    <div class="categories">
+        <div class="category" *ngFor="let c of categories" (click)="filterByCategory(c)">{{c}}</div>
+    </div>
+    <div class="items">
+        <food-card *ngFor="let i of filteredItems" [food]="i"></food-card>
+    </div>
+</mat-card>
+

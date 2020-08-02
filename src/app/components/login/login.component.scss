@@ -1,0 +1,32 @@
+
+$form-width: 400px;
+$form-height: 300px;
+$form-margins: 10px;
+$form-padding: 20px;
+
+
+mat-card{
+    position: relative;
+    left: 50%;
+    // top: 50%;
+    transform: translateX(-50%);
+    width: $form-width;
+    min-height: $form-height;
+    margin: 20px;
+    &-title{
+        text-align: center;
+    }
+    &-subtitle{
+        margin-top: 13px !important;
+        margin-bottom: 0 !important;
+    }
+}
+
+form{
+    height: 200px;
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-around;
+    margin: 50px 0 0 0;
+    background-color: #fff;
+}

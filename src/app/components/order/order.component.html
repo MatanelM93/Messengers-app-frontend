@@ -1,0 +1,93 @@
+<mat-card *ngIf="userItems.length != 0 else emptyOrder">
+    <mat-card-title >
+        My order:
+    </mat-card-title>
+    <mat-card-subtitle *ngIf="status">
+        {{ status }}
+    </mat-card-subtitle>
+    <ul>
+        <li *ngFor="let i of userItems">
+            {{ i.name }}: {{ i.quantity}}
+        </li>
+    </ul>
+    <div class="not-checked" *ngIf="!status">
+        <mat-form-field>
+            <mat-label>Leave a comment</mat-label>
+            <textarea matInput placeholder="Put in front of the door, thanks." maxlength="255" #message></textarea>
+            <mat-hint align="start"><strong>Providing extra information prevents hitches occur</strong></mat-hint>
+            <mat-hint align="end">{{message.value.length}} / 255</mat-hint>
+        </mat-form-field>
+        <br>
+        <button mat-raised-button (click)="checkoutPopupOpen(message.value)">Checkout</button>
+    </div>
+    <button *ngIf="status == 'pending'" mat-raised-button color="warn" (click)="delete()">Delete</button>
+    <button  *ngIf="status == 'picked' || status == 'stumbled' " mat-raised-button (click)="update()">Delivered</button>
+    <button mat-raised-button (click)="toggleHistory = !toggleHistory">History</button>
+    <mat-card-content *ngIf="messenger">
+        messenger contact info :
+        <mat-card-subtitle>
+            email: 
+        </mat-card-subtitle>
+        {{ messenger?.email }}
+    </mat-card-content>
+</mat-card>
+
+<mat-card *ngIf="toggleHistory" class="history">
+    <button mat-raised-button (click)="toggleHistory = !toggleHistory">X</button>
+    <div *ngIf="historyItems.length != 0 else emptyHistory">
+        <ul *ngFor="let i of historyItems">
+            <h3>Order No.{{ i.id }}</h3>
+            <li *ngFor="let j of i.items">
+                {{ j.name }}: {{ j.quantity }}
+            </li>
+        </ul>
+    </div>
+</mat-card>
+
+<mat-card class="checkout" [class.hidden]="!toggleCheckout">
+    <button mat-raised-button (click)="toggleCheckout = !toggleCheckout">X</button>
+
+    <mat-card-content class="order-details">
+        <mat-card-title>Checkout: Total price</mat-card-title>
+            <mat-card-subtitle>here will be a name</mat-card-subtitle>
+            <mat-card-subtitle>here will be an city</mat-card-subtitle>
+            <mat-card-subtitle>here will be street and number</mat-card-subtitle>
+            <mat-card-subtitle>here will be a phone number</mat-card-subtitle>
+            <hr>
+            <ul>
+                <li *ngFor="let i of userItems">
+                    {{ i.name }}: {{ i.quantity}}
+                </li>
+            </ul>
+            <hr>
+            <mat-card-subtitle>here will be an order message</mat-card-subtitle>
+    </mat-card-content>
+    <mat-card-content class="payment-form">
+        <form novalidate (ngSubmit)="buy()" [formGroup]="stripeTest">
+            <mat-form-field appearance="fill" >
+                <mat-label>Card holder name</mat-label>
+                <input matInput type="text" formControlName="name" placeholder="Israel Israeli">
+            </mat-form-field>
+            <div id="card-element" class="field"></div>
+            <button mat-raised-button type="submit">
+              BUY
+            </button>
+          </form>
+    </mat-card-content>
+</mat-card>
+
+<ng-template #emptyHistory>
+    <mat-card-title>
+        No completed orders
+    </mat-card-title>
+</ng-template>
+
+<ng-template #emptyOrder>
+    <mat-card>
+        <mat-card-title>
+            Your order is empty!
+        </mat-card-title>
+        <button mat-stroked-button [routerLink]="['/']">Home</button>
+    </mat-card>
+</ng-template>
+
